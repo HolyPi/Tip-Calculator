@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <title> Tip Calculator</title>
+    <head>
+    </head> 
+<body>
+    <style>
+
+
+        .container {
+            background-image: url('diner.jpg');
+            padding-bottom: 100px;
+            padding-left: 400px;
+            padding-top: 100px;
+
+        }
+        body {
+
+            font-style: Helvetica;
+
+        }
+
+        h2 {
+        color: white;
+        letter-spacing: 0.2em;
+        font-weight: 100;
+        
+        }
+
+        #input-bill {
+            width: 300px;
+            height: 40px;
+            font-size: 40px;
+
+        }
+
+        #input-tip {
+            width: 300px;
+            height: 40px;
+            font-size: 40px;
+            
+
+
+        }
+
+        #input-people {
+            width: 300px;
+            height: 40px;
+            font-size: 40px;
+
+        }
+
+        .display {
+        font-size: 25px;
+        color: white;
+        font-weight: 100;
+
+
+        }
+            
+        .figure {
+            position: relative;
+            top: 0;
+            left: 0;
+           
+        }
+
+        h1 {
+            color: white;
+            font-weight: 100px;
+            font-size: 70px;
+            letter-spacing: 0.3em;
+            margin-left: -80px;
+        }
+
+       
+
+
+
+    </style>
+
+</body>
+
+<div class="figure"><img src="bill.png" alt="bill" height="300px" width="300px"></div>
+<div class="container">
+<main class="main">
+    <div class="output left-side">
+      <div class="display">Tip:<span id="display-tip"></span></div>
+      <div class="display">Total:<span id="display-total"></span></div>
+      <div class="display">Each:<span id="display-each"></span></div>
+    </div>
+
+<h1>Calculator</h1>
+<h2>Bill</h2>
+<input type="number" id="input-bill">
+<h2>Tip</h2>
+<input type="number" id="input-tip">
+<h2> Number of People</h2>
+<input type="number" id="input-people" name="people" min="1" max="1000">
+
+</div>
+
+
+</html>
+
+<script>
+
+
+let bill = 0
+
+
+const inputBill = document.getElementById('input-bill')
+console.log(e.target.value)
+console.log(newBill)
+console.log(bill)
+
+inputBill.addEventListener('input', handleBill)
+
+function handleBill(e) {
+  const newBill = parseFloat(e.target.value)
+
+  if (!isNaN(newBill)) {
+    bill = newBill
+  } else {
+    e.target.value = bill
+  }
+}
+
+</script>
