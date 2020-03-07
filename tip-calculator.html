@@ -9,7 +9,7 @@
 
 
         .container {
-            background-image: url('diner.jpg');
+        
             padding-bottom: 100px;
             padding-left: 400px;
             padding-top: 100px;
@@ -18,6 +18,7 @@
         body {
 
             font-style: Helvetica;
+            background: #444;
 
         }
 
@@ -51,13 +52,7 @@
 
         }
 
-        .display {
-        font-size: 25px;
-        color: white;
-        font-weight: 100;
-
-
-        }
+        
             
         .figure {
             position: relative;
@@ -74,7 +69,47 @@
             margin-left: -80px;
         }
 
+        .display {
+
+        font-size: 25px;
+        color: white;
+        font-weight: 100
+
+        }
+
+        #input-bill {
+            margin-left: 40px;
+        }
+
+        #input-tip {
+            margin-left: 45px;
+        }
+        #input-people {
+            margin-left: 13px;
+        }
+
+        .bill {
+
+        font-size: 25px;
+        color: white;
+        font-weight: 100
+
+
+        }
+        
+        .tip {
+        font-size: 25px;
+        color: white;
+        font-weight: 100
+
+        }
        
+       .people {
+        font-size: 25px;
+        color: white;
+        font-weight: 100
+
+       }
 
 
 
@@ -85,46 +120,81 @@
 <div class="figure"><img src="bill.png" alt="bill" height="300px" width="300px"></div>
 <div class="container">
 <main class="main">
-    <div class="output left-side">
-      <div class="display">Tip:<span id="display-tip"></span></div>
-      <div class="display">Total:<span id="display-total"></span></div>
-      <div class="display">Each:<span id="display-each"></span></div>
-    </div>
-
-<h1>Calculator</h1>
-<h2>Bill</h2>
-<input type="number" id="input-bill">
-<h2>Tip</h2>
-<input type="number" id="input-tip">
-<h2> Number of People</h2>
-<input type="number" id="input-people" name="people" min="1" max="1000">
-
+    <div class="display">
+<div class="tipperc">Tip: <div id="display-tip"> </div></div>
+<div class="total">Total payment: <div id="display-bill"> </div></div>
+<div class="perc">Per Person: <div id="display-person"> </div></div>
 </div>
 
 
-</html>
+<h1>Calculator</h1>
+<div class="bill">Bill<input id="input-bill" type="number"></div>
+<div class="tip">Tip<input id="input-tip" type="number"></div>
+<div class="people">People<input id="input-people" type="number"></div>
+
+
+
 
 <script>
+    const inputBill = document.getElementById('input-bill')
+    const inputTip = document.getElementById('input-tip')
+    const inputPeople = document.getElementById('input-people')
+
+    let bill = parseFloat(inputBill.value)
+    let percent = parseFloat(inputTip.value)
+    let people = parseInt(inputPeople.value)
 
 
-let bill = 0
+    const displayTip = document.getElementById('display-tip')
+    const displayTotal = document.getElementById('display-bill')
+    const displayPer = document.getElementById('display-person')
 
+    
+    inputBill.addEventListener('input', handleBill)
+    function handleBill(e) {
+        const newBill = parseFloat(e.target.value)
+        const newPercent = parseFloat(e.target.value)
+        if (!isNaN(newBill)) {
+            bill = newBill
+        } else {
+            e.target.value = bill
+        }
+        calculate()
+    }
+    inputTip.addEventListener('input', handlePercent)
+    function handlePercent(e) {
+        const newPercent = parseFloat(e.target.value)
+        if (!isNaN(newPercent)) {
+            percent = newPercent
+        } else {
+            e.target.value = percent
+        }
+        calculate()
+    }
+    inputPeople.addEventListener('input', handlePeople)
+    function handlePeople(e) {
+        const newPeople = parseFloat(e.target.value)
+        if (!isNaN(newPeople)) {
+            people = newPeople
+        } else {
+            e.target.value = people
+        }
+        calculate()
+    }
+    function calculate() {
+        const tip = bill * percent / 100
+        const total = bill + tip
+        const perperson = total / people 
 
-const inputBill = document.getElementById('input-bill')
-console.log(e.target.value)
-console.log(newBill)
-console.log(bill)
+        console.log(bill)
+        console.log(total)
+        console.log(perperson)
 
-inputBill.addEventListener('input', handleBill)
-
-function handleBill(e) {
-  const newBill = parseFloat(e.target.value)
-
-  if (!isNaN(newBill)) {
-    bill = newBill
-  } else {
-    e.target.value = bill
-  }
-}
-
+    
+        displayTip.innerHTML = tip.toFixed(2)
+        displayTotal.innerHTML = total.toFixed(2)
+        displayPer.innerHTML = perperson.toFixed(2)
+    }
 </script>
+</body>
+</html>
